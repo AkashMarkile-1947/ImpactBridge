@@ -1,0 +1,60 @@
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
+import './tailwind.css'
+
+// import required modules
+import { Pagination, Navigation } from "swiper";
+
+export default function Slider() {
+  return (
+    <>
+      <Swiper
+        slidesPerView={1}
+        spaceBetween={30}
+        loop={true}
+        pagination={{
+          clickable: true,
+        }}
+        navigation={true}
+        modules={[Pagination, Navigation]}
+        className="mySwiper custom-slider"
+      >
+        <SwiperSlide><Slide Picture={BannerPhotos.img1}/></SwiperSlide>
+        <SwiperSlide>Slide 2</SwiperSlide>
+        <SwiperSlide>Slide 3</SwiperSlide>
+        <SwiperSlide>Slide 4</SwiperSlide>
+        <SwiperSlide>Slide 5</SwiperSlide>
+      </Swiper>
+    </>
+  );
+}
+
+const BannerPhotos = {
+  img1: "hungry_child.png"
+}
+
+
+const Slide = ({Picture ,Mission, Subtext, tagline, path}) => {
+  return (
+    <div className="" style={{ boxShadow: "0 0 200px rgba(0,0,0,0.7) inset"}}>
+    <div className="section-container flex justify-between items-center" style={{marginBlock: "0", paddingBlock: "2rem", maxWidth: "none", backgroundColor: "gray", width: "95%"}}>
+            <div className="section-img">
+                <img src={`/${Picture}`} alt={`${Picture}`}  style={{maxHeight: "350px"}}/>
+            </div>
+            <div className="section-info">
+                <h1 className="section-heading">Mission:</h1>
+                <h1 className="section-heading">{Mission ? Mission : "No Child Hungry" }</h1>
+                <h3 className="section-subheading">{Subtext ? Subtext : "Provide them with regular nutrition"}</h3>
+                <div className="container-info">{tagline ?  tagline : "Lorem ipsum dolor sit amet consectetur adipisicing elit."}</div>
+                <button type="button" className="focus:outline-none text-white focus:ring-4 focus:ring-green-300  font-medium rounded-md  text-sm px-5 py-2.5" style={{backgroundColor: "#c2410c", marginBlock: "1rem", fontSize: "1.1rem", width: "50%"}}>Donate Now</button>
+            </div>
+    </div>
+    </div>
+  )
+}
