@@ -1,22 +1,25 @@
 import React from "react";
+import NavbarBtn from "./NavbarBtn";
+import { Link } from "react-router-dom";
 
 export default function Nav({color}) {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
   return (
     <>
       <nav
-        className={`relative flex flex-wrap items-center justify-between px-2 py-3 ${
-          color ? "bg-transparent" : "bg-gray-900"
+        className={`relative flex flex-wrap items-center sticky top-0 nav justify-between px-2 py-3 ${
+          color ? "bg-transparent" : "navbar-color"
         } mb-3`}
       >
         <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
           <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
-            <a
+            <Link
               className="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white"
-              href="#pablo"
+              to="/"
             >
               ImpactBridge
-            </a>
+            </Link>
+            <NavbarBtn />
             <ul className="flex flex-col md:flex-row hidden md:flex list-none md:ml-auto">
               <li className="nav-item">
                 <a

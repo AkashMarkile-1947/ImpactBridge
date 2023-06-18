@@ -4,11 +4,11 @@ import AuthTemp from "./AuthTemp";
 import { useNavigate } from "react-router-dom";
 // import SecurityQuestionForm from './Question';
 import * as Yup from "yup";
-const SignUpForm = () => {
+const AdminSignUpForm = () => {
   return <AuthTemp component={SignUp} />;
 };
 
-export default SignUpForm;
+export default AdminSignUpForm;
 
 const SignUp = () => {
     const navigate = useNavigate();
@@ -45,7 +45,7 @@ const SignUp = () => {
   const handleSubmit = async(values, { setSubmitting }) => {
     const {firstname, lastname, dateofbirth, contact, password, email} = values;
     console.log(values);
-    const result = await fetch('http://localhost:8080/api/signup', {
+    const result = await fetch('http://localhost:8080/api/AdminSignup', {
       method: 'POST',
       headers: { 
           'Content-Type': 'application/json'
@@ -62,7 +62,6 @@ const SignUp = () => {
 
     if(result.status === 'ok') {
       alert(result.msg);
-      navigate('/dashboard', { replace: true });
     } else {
       alert(result.error);
     }

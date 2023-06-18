@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom';
 /* import { LockClosedIcon } from '@heroicons/react/solid';
  */
 function LoginForm() {
-  return <AuthTemp component={Login} />
+  return <AuthTemp component={AdminLogin} />
 }
 export default LoginForm;
 
-const Login = () => {
+const AdminLogin = () => {
   const initialValues = { email: '', password: '' };
 
   const validationSchema = Yup.object({

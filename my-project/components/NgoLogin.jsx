@@ -4,12 +4,12 @@ import AuthTemp from './AuthTemp';
 import { Link } from 'react-router-dom';
 /* import { LockClosedIcon } from '@heroicons/react/solid';
  */
-function LoginForm() {
-  return <AuthTemp component={Login} />
+function NgoLoginForm() {
+  return <AuthTemp component={NgoLogin} />
 }
-export default LoginForm;
+export default NgoLoginForm;
 
-const Login = () => {
+const NgoLogin = () => {
   const initialValues = { email: '', password: '' };
 
   const validationSchema = Yup.object({
@@ -22,7 +22,7 @@ const Login = () => {
 
   const handleSubmit = async (values, { setSubmitting }) => {
     const {email, password} = values;
-    const result = await fetch('http://localhost:8080/api/login', {
+    const result = await fetch('http://localhost:8080/api/ngo-login', {
       method: 'POST',
       headers: { 
           'Content-Type': 'application/json'

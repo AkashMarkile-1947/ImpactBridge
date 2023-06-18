@@ -11,6 +11,12 @@
 
 h1 {
   font-size: 3rem;
+  margin: 1rem auto;
+}
+p {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.7rem;
 }
 #app {
   height: 100%;
@@ -30,7 +36,13 @@ body {
   padding: 0;
   background-color: #fff;
 }
-
+.nav {
+}
+.navbar-color, .bg-transparent {
+  background-color: #c2410c;
+  position: sticky;
+  top: 0;
+}
 .swiper {
   width: 100%;
   height: 400px;
@@ -38,6 +50,7 @@ body {
 .custom-slider {
   min-height: 420px;
   margin-bottom: 2rem;
+  z-index: 10;
 }
 .swiper-slide {
   text-align: center;
@@ -47,8 +60,11 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
-
+.z {
+  z-index: 0;
+}
 .swiper-slide img {
   display: block;
   width: 100%;
@@ -68,7 +84,9 @@ body {
 .m-info h1 {
   word-wrap: break-word;
 }
-
+.auth-temp {
+  height: clamp(100vh - 64px);
+}
 .info-list div .mission-icon {
   width: 70px;
   height: 70px;
@@ -83,7 +101,7 @@ body {
   max-width: 380px;
   min-width: 300px;
   margin: 10px auto;
-  border: 4px solid rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(0, 0, 0, 0.5);
 }
 .section-heading {
   font-size: 2rem;
@@ -94,7 +112,25 @@ body {
   background-image: url("/Child-Hunger-cover-transformed.jpeg");
   background-size: cover;
   background-position: center;
+  z-index: 0;
 }
+
+.educate-child {
+  background-image: url("/childEdu-back.jpeg");
+}
+
+.disabled {
+  background-image: url("/ability-1.jpg");
+}
+
+.elder {
+  background-image: url("/EldersLiveMatter.jpg");
+}
+
+.heal {
+  background-image: url("/heal-back.jpg");
+}
+
 .content-center {
   color: #fff;
   position: absolute;
@@ -327,10 +363,44 @@ body {
   justify-content: space-between;
   align-items: center;
 }
-
+.stat-h {
+  font-size: 1.2rem;
+}
+.form-links {
+  text-decoration: underline;
+  font-size: 0.95rem;
+}
+.ngo-input {
+  width: clamp(200px, 250px, 300px);
+}
+.ngo-registration {
+  width: clamp(450px, 600px, 800px);
+  backdrop-filter: blur(5px);
+  z-index: 0;
+}
+.auth-component {
+  width: 100%;
+  max-width: 800px;
+  min-width: 800px;
+}
+.hide {
+  display: inline;
+}
+[type="submit"] {
+  background-color: #c2410c;
+}
+.ngo-form  {
+  background-color: whitesmoke;
+}
+.ngo-registration {
+  max-width: 80vh;
+}
 @media only screen and (max-width: 1000px) {
   .mission-card {
     margin-block: 1rem;
+  }
+  .hide {
+    display: none;
   }
   .mission-info {
     min-width: 300px;
@@ -358,5 +428,10 @@ body {
   }
   .footer-container {
     display: block;
+  }
+  .ngo-registration {
+    position: relative;
+    left: -5rem;
+    max-width: none;
   }
 }

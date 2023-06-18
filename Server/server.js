@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt');
 const connection = require('./DB/conn');
 const LoginR = require('./Routes/login');
 const SignupR = require('./Routes/signup');
+const NgoLoginR = require('./Routes/NgoLoginR');
 //const NGOAccReq = require('./Routes/NgoAccount');
 const NGOAcc = require('./Routes/NgoAcc');
 const app  = express();
@@ -18,6 +19,7 @@ port = process.env.PORT || 8080;
 app.use('/', LoginR);
 app.use('/', SignupR);
 app.use('/', NGOAcc);
+app.use('/', NgoLoginR);
 //app.use('/', NGOAccReq);
 
 connection();
