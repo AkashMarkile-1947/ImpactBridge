@@ -1,0 +1,28 @@
+.leftside {
+  background-image: url(../public/helphand.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 800px;
+  height: 753px;
+  /* display: flex;
+  justify-content: center; */
+}
+.rightside {
+  display: flex;
+  justify-content: center;
+  /* height: 100vh; */
+  margin-left: 60px;
+}
+.form {
+  margin-top: 50px;
+  align-items: center;
+}
+.textfield {
+  text-align: center;
+  margin-top: 130px;
+  margin-left: 20px;
+  margin-right: 2px;
+  color: #c2410c;
+  font-weight: 800;
+  font-size: 50px;
+}
