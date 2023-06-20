@@ -394,7 +394,10 @@ body {
 }
 .ngo-registration {
   max-width: 80vh;
+  box-shadow: 20px 20px 10px grey;
+  box-shadow: 20px 20px 50px 10px#c2410c inset;
 }
+
 @media only screen and (max-width: 1000px) {
   .mission-card {
     margin-block: 1rem;
