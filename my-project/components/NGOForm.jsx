@@ -2,52 +2,23 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Nav from "./Navbar";
 import "./tailwind.css";
+import "./NGOReg.css";
 
 const NGOFrom1 = () => {
   return (
     <>
-    <div style={{overflowX: "hidden"}}>
-      <div
-        className="flex items-center justify-center h-screen text-black auth-temp ngo-form"
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "calc(100vh - 68px)",
-          maxHeight: "100%", // adjust as needed
-        }}
-      >
-        <div className="flex flex-col items-center justify-center w-full max-w-screen-lg px-8 bg-[]">
-          <div className="w-full md:flex md:flex-row md:items-center md:justify-between">
-            <div className="md:inline md:w-[45%] w-full mb-10 md:mb-0">
-              <div
-                style={{ maxWidth: "450px", margin: "0 auto" }}
-                className="hide"
-              >
-                <h1 className="text-2xl mb-2">Lorem ipsum dolor sit.</h1>
-                <p>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Provident tenetur perspiciatis expedita magnam maiores
-                  recusandae odio minima saepe impedit ut?
-                </p>
-              </div>
-            </div>
-            <div className="auth-component">
-              <div
-                className="w-full overflow-hidden"
-                style={{
-                  maxWidth: "none",
-                  backdropFilter: "blur(5px)",
-                  margin: "0 auto",
-                }}
-              >
-                <RegistrationForm1 />
-              </div>
-            </div>
+      <div className="flex flex-row mr-6" style={{ overflowX: "hidden" }}>
+        <div className="leftside">
+          <div className="textfield" >
+        Be the Change You Wish To See
+        </div>
+        </div>
+        <div className="rightside">
+          <div className="flex form justify-center">
+            <RegistrationForm1 />
           </div>
         </div>
       </div>
-    </div>
     </>
   );
 };
@@ -58,7 +29,7 @@ const RegistrationForm1 = () => {
     organizationType: "",
     contactPersonName: "",
     contactNGOEmail: "",
-    contactPersonPhone: 0,
+    contactPersonPhone: "",
     organizationWebsite: "",
     missionStatement: "",
     activitiesDescription: "",
@@ -66,9 +37,8 @@ const RegistrationForm1 = () => {
     targetBeneficiaryGroups: "",
     registrationNumber: "",
     socialMediaLinks: "",
-    password:"",
-    confirmPassword:"",
-
+    password: "",
+    confirmPassword: "",
   };
 
   const validationSchema = Yup.object({
@@ -154,7 +124,7 @@ const RegistrationForm1 = () => {
               name="contactPersonName"
               type="text"
             />
-            
+
             <Textfield
               label="Contact Person Phone:"
               name="contactPersonPhone"
