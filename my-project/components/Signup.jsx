@@ -1,8 +1,9 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field, ErrorMessage, replace } from "formik";
+import {Link } from 'react-router-dom';
 import AuthTemp from "./AuthTemp";
+import { useNavigate } from "react-router-dom";
 // import SecurityQuestionForm from './Question';
 import * as Yup from "yup";
-
 const SignUpForm = () => {
   return <AuthTemp component={SignUp} />;
 };
@@ -10,6 +11,7 @@ const SignUpForm = () => {
 export default SignUpForm;
 
 const SignUp = () => {
+    const navigate = useNavigate();
     const initialValues = {
         firstname: '',
         lastname: '',
@@ -60,6 +62,7 @@ const SignUp = () => {
 
     if(result.status === 'ok') {
       alert(result.msg);
+      navigate('/dashboard', { replace: true });
     } else {
       alert(result.error);
     }
@@ -69,7 +72,7 @@ const SignUp = () => {
   return (
     <>
       <div className="flex flex-col items-center signup-msg min-w-[45%] max-w-[50%] m-auto hidden md:block">
-        <h2 className="text-lg font-medium text-gray-900">
+        <h2 className="text-lg font-medium text-gray-900 section-heading">
         Create your account
         </h2>
       </div>
@@ -219,14 +222,18 @@ const SignUp = () => {
                 <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+/*                     className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+ */                    className="focus:outline-none text-white focus:ring-4 focus:ring-green-300 font-medium rounded-md text-sm px-5 py-2.5 mr-2 mb-2 hero-donate w-full"
                 >
-                    Log in
+                    Sign Up
                 </button>
             </div>
           </Form>
         )}
       </Formik>
+      <div className="flex justify-end">
+            <p className="text-sm my-4 form-links">Already Have an Account<Link to="/login" className="form-links">&nbsp;Login</Link></p>
+      </div>
     </>
   );
 };

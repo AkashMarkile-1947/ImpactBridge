@@ -10,10 +10,10 @@ const NGOForm2 = () => {
 
     try {
       const form = event.target;
-      const formData = new FormData(form); // Create a new FormData object
-
       const ngoData = JSON.parse(sessionStorage.getItem("ngo-data"));
-      formData.append("ngoData", JSON.stringify(formData, ngoData)); // Append additional data to the FormData
+      const formData = new FormData(); // Create a new FormData object
+      formData.append('ngoData', JSON.stringify(ngoData));
+      formData.append('files', form);
 
       const response = await fetch("http://localhost:8080/api/NGOAcc2", {
         method: "POST",
@@ -31,7 +31,6 @@ const NGOForm2 = () => {
       alert("Error");
     }
   };
-  
 
 
   return (

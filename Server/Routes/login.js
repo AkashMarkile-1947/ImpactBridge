@@ -19,9 +19,9 @@ router.post('/api/login', async(req, res) => {
         if (await bcrypt.compare(password, user.password)) {
             //correct password
             if (user.hasOwnProperty("isAdmin")) {
-                return res.json({status: 'ok', email: email, isAdmin: true})
+                return res.json({status: 'ok', email: email, isAdmin: true, firstname: user.firstname, lastname: user.lastname})
             } else {
-                return res.json({status: 'ok', email: email, isAdmin: false})
+                return res.json({status: 'ok', email: email, isAdmin: false, firstname: user.firstname, lastname: user.lastname})
             }
         } else {
             return  res.json({status: 'error', error: 'Invalid username or password'});

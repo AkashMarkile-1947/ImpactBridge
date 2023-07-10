@@ -1,0 +1,79 @@
+/* CSS for the complete page */
+
+body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .signup-page {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .picture {
+    flex: 1;
+    background-image: url('https://www.unicef.org/sites/default/files/styles/hero_extended/public/Hero%20-%20Transforming%20Education%20%2811%29.jpg?itok=jjNMvsjA');
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .signup-form {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .input-field {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #000;
+  padding-block: 2px;
+  margin-bottom: 5px;
+  border: none;
+  border-bottom: 1px solid #000;
+  outline: none;
+  background: transparent;
+  }
+  .input-field:focus{
+    outline: none;
+    box-shadow: none;
+  }
+  /* Apply custom scrollbar to the .ngo-registration */
+.ngo-registration {
+    overflow: auto;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+    /* Enable scrollbar */
+  }
+  
+  /* Hide the default scrollbar styles */
+  .ngo-registration::-webkit-scrollbar {
+    width: 8px;
+    background-color: #f5f5f5;
+  }
+  
+  .ngo-registration::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+  }
+  
+  .ngo-registration::-webkit-scrollbar-track {
+    background-color: #f5f5f5;
+  }
+  
+  /* Optional: Hover styles for the scrollbar */
+  .ngo-registration::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+  }
+  
+  .ngo-registration::-webkit-scrollbar-thumb:active {
+    background-color: #333;
+  }
+  .error { 
+    position: relative;
+    top: -8px;
+    margin-block: 0;
+  }
+
+  

@@ -1,10 +1,12 @@
-import { Formik, Form, Field, ErrorMessage, replace } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Nav from "./Navbar";
 import "./tailwind.css";
+import "./ngoform.css";
+
 import { useNavigate } from "react-router-dom";
 
-const NGOFrom1 = () => {
+/* const NGOFrom1 = () => {
   return (
     <>
     <div style={{overflowX: "hidden"}}>
@@ -52,8 +54,29 @@ const NGOFrom1 = () => {
     </>
   );
 };
+ */
+
+const NGOFrom1 = () => {
+  const navigate = useNavigate();
+
+  // Rest of the code...
+
+  return (
+    <>
+      <Nav /> {/* Load the Nav component here */}
+      <div className="signup-page">
+        <div className="picture"></div>
+        <div className="signup-form">
+          <RegistrationForm1 />
+        </div>
+      </div>
+    </>
+  );
+};
 
 const RegistrationForm1 = () => {
+  const navigate = useNavigate();
+
   const initialValues = {
     organizationName: "",
     organizationType: "",
@@ -71,8 +94,6 @@ const RegistrationForm1 = () => {
     confirmPassword:"",
 
   };
-
-  const navigate =  useNavigate();
 
   const validationSchema = Yup.object({
     organizationName: Yup.string().required("Required"),
@@ -99,7 +120,6 @@ const RegistrationForm1 = () => {
 
   const handleSubmit = async (values) => {
     try {
-      const ngoLogin = sessionStorage.setItem("ngo-data", JSON.stringify(values))
       const response = await fetch("http://localhost:8080/api/NGOAccCreation", {
         method: "POST",
         headers: {
@@ -111,8 +131,9 @@ const RegistrationForm1 = () => {
       if (response.ok) {
         const data = await response.json();
         console.log(data); // Log the response data
+        const ngoData = sessionStorage.setItem("ngo-data", JSON.stringify(values));
         alert("Success");
-        navigate("../ngo-register-2", {replace: true})
+        navigate('../', {replace: true});
       } else {
         alert("Error");
       }
@@ -130,7 +151,7 @@ const RegistrationForm1 = () => {
     >
       <Form
         className="mx-auto p-4 rounded-lg border ngo-registration"
-        style={{ overflowY: "scroll" }}
+
       >
         <div className="flex" style={{ margin: "0 auto" }}>
           <label className="font-bold" style={{ fontSize: "36px" }}>
@@ -230,17 +251,19 @@ const RegistrationForm1 = () => {
 
 const Textfield = ({ label, name, type }) => {
   return (
-    <div className="mb-2">
-      <label className="block font-bold">{label}</label>
+    <div className="mb-2 user-box">
+      
       <Field
         type={type}
         name={name}
-        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md ngo-input shadow-md"
-      />
+/*         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md ngo-input shadow-md"
+ */      className="input-field"
+ />
+ <label className="block font-bold">{label}</label>
       <ErrorMessage
         name={name}
         component="div"
-        className="text-red-500 text-sm"
+        className="text-red-500 text-sm error"
       />
     </div>
   );

@@ -1,6 +1,8 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import AuthTemp from './AuthTemp';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 /* import { LockClosedIcon } from '@heroicons/react/solid';
  */
 function LoginForm() {
@@ -10,6 +12,7 @@ export default LoginForm;
 
 const Login = () => {
   const initialValues = { email: '', password: '' };
+  const navigate = useNavigate();
 
   const validationSchema = Yup.object({
     email: Yup.string().email('Invalid email address').required('Required'),
@@ -34,8 +37,12 @@ const Login = () => {
 
     if(result.status === 'ok') {
       alert('success');
+      console.log(result);
+      sessionStorage.setItem('login-data', JSON.stringify(result));
+      navigate('../dashboard', {replace: true});
     } else {
       alert('error');
+      sessionStorage.setItem('login-data', "");
     }
     setSubmitting(false);
   };
@@ -90,6 +97,10 @@ const Login = () => {
             </Form>
           )}
         </Formik>
+        <div className="flex justify-between items-center">
+          <Link to="/signup" className="form-links">Don't have an account? Sign Up</Link>
+          <Link to="/forgot_password" className="form-links">Forgot password?</Link>
+        </div>
         </>
   )
 }
