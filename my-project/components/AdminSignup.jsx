@@ -45,7 +45,7 @@ const SignUp = () => {
   const handleSubmit = async(values, { setSubmitting }) => {
     const {firstname, lastname, dateofbirth, contact, password, email} = values;
     console.log(values);
-    const result = await fetch('http://localhost:8080/api/AdminSignup', {
+    const result = await fetch('http://localhost:8080/api/signup', {
       method: 'POST',
       headers: { 
           'Content-Type': 'application/json'
@@ -57,11 +57,13 @@ const SignUp = () => {
           lastname,
           dateofbirth,
           contact,
+          isAdmin: true
         })//
     }).then(res => res.json());
 
     if(result.status === 'ok') {
       alert(result.msg);
+      navigate("../admin-login", {replace: true});
     } else {
       alert(result.error);
     }

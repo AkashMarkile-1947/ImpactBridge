@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 const cors = require("cors");
-const NgoDetails = require("../DB/models/ngoDetails");
+const NgoRequested = require("../DB/models/ngoRequested");
 router.use(express.json());
 router.use(cors());
 
@@ -30,7 +30,7 @@ router.post("/api/NGOAccCreation", async (req, res) => {
   }
   try {
     password = await bcrypt.hash(password, 10);
-    const response = await NgoDetails.create({
+    const response = await NgoRequested.create({
       organizationName,
       organizationType,
       contactPersonName,
@@ -44,6 +44,7 @@ router.post("/api/NGOAccCreation", async (req, res) => {
       registrationNumber,
       socialMediaLinks,
       password,
+      isBlocked: false
     });
     res.json({ status: "ok", data: "success" });
   } catch (error) {

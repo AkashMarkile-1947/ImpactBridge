@@ -47,7 +47,7 @@ const NavbarBtn = () => {
               </Link>
             </li>
             <li className="w-1/2">
-              <a href="#" className="p-2 a1">
+              <a href="/admin-login" className="p-2 a1">
                 Admin Login
               </a>
             </li>

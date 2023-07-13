@@ -1,7 +1,7 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import AuthTemp from './AuthTemp';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 /* import { LockClosedIcon } from '@heroicons/react/solid';
  */
 function NgoLoginForm() {
@@ -11,6 +11,7 @@ export default NgoLoginForm;
 
 const NgoLogin = () => {
   const initialValues = { email: '', password: '' };
+  const navigate = useNavigate();
 
   const validationSchema = Yup.object({
     email: Yup.string().email('Invalid email address').required('Required'),
@@ -34,8 +35,11 @@ const NgoLogin = () => {
     }).then(res => res.json());
 
     if(result.status === 'ok') {
+      console.log(result.data);
+      sessionStorage.setItem('ngo-login', JSON.stringify(result.data));
+      const loginData = sessionStorage.setItem("login-data", null);
       alert('success');
-      navigate('../', {replace: true});
+      navigate('../ngo-dashboard', {replace: true});
     } else {
       alert('error');
     }

@@ -102,6 +102,7 @@ const RegistrationForm1 = () => {
       .email("Invalid email address")
       .required("Required"),
     contactPersonPhone: Yup.number().required("Number is required"),
+    contactPersonName: Yup.string().required(""),
     organizationWebsite: Yup.string().url("Invalid URL").required("Required"),
     missionStatement: Yup.string().required("Required"),
     activitiesDescription: Yup.string().required("Required"),
@@ -239,7 +240,7 @@ const RegistrationForm1 = () => {
         <div className="flex justify-center">
           <button
             type="submit"
-            className="text-white bg-blue-700 hover:bg-[#c2410c]-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 mt-3 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 w-full"
+            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
             Submit
           </button>

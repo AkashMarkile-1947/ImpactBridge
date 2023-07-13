@@ -32,6 +32,10 @@ const GatewaySchema = new mongoose.Schema({
     ,timestamp: {
         type: String,
         required: true,
+    },
+    NGOName: {
+        type: String,
+        required: true,
     }
 }, {collection: "NgoTransactions"});
 

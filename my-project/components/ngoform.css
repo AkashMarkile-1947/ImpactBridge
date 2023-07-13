@@ -32,6 +32,7 @@ body {
   padding-block: 2px;
   margin-bottom: 5px;
   border: none;
+  min-width: 250px;
   border-bottom: 1px solid #000;
   outline: none;
   background: transparent;
@@ -39,6 +40,7 @@ body {
   .input-field:focus{
     outline: none;
     box-shadow: none;
+    border-color: #c2410c;
   }
   /* Apply custom scrollbar to the .ngo-registration */
 .ngo-registration {
@@ -46,7 +48,12 @@ body {
     box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
     /* Enable scrollbar */
   }
-  
+  .signup-form {
+    background-color: #d2cfcf;
+  }
+  .ngo-registration {
+    background-color: #fff;
+  } 
   /* Hide the default scrollbar styles */
   .ngo-registration::-webkit-scrollbar {
     width: 8px;

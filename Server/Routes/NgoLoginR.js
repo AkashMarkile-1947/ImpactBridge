@@ -8,24 +8,24 @@ router.use(cors());
 
 router.post('/api/ngo-login', async(req, res) => {
     let {email, password} = req.body;
-    console.log(email, password);
+    //console.log(email, password);
     try {
         const ngo = await NgoDetails.findOne({contactNGOEmail: email}).lean();
         console.log(ngo);
 
         if (!ngo) {
-            return res.json({status: 'error', error: 'Invalid username or password'})
+            return res.json({status: 'error', data: 'Invalid username or password'})
         }
         //comp(password, user.password);
         if (await bcrypt.compare(password, ngo.password)) {
             //correct password
-            return res.json({status: 'ok', email: email});
+            return res.json({status: 'ok', email: email, data: ngo});
         } else {
-            return  res.json({status: 'error', error: 'Invalid username or password'});
+            return  res.json({status: 'error', data: 'Invalid username or password'});
         }
     } catch (err) {
         //console.error(JSON.stringify(err));
-        return  res.json({status: 'error', error: 'Invalid username or password'});
+        return  res.json({status: 'error', data: 'Invalid username or password'});
     }    
 })
 

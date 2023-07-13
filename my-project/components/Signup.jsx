@@ -57,12 +57,13 @@ const SignUp = () => {
           lastname,
           dateofbirth,
           contact,
+          isAdmin: false
         })//
     }).then(res => res.json());
 
     if(result.status === 'ok') {
       alert(result.msg);
-      navigate('/dashboard', { replace: true });
+      navigate('/login', { replace: true });
     } else {
       alert(result.error);
     }

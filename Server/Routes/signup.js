@@ -9,11 +9,11 @@ router.use(cors());
 
 
 router.post('/api/signup', async(req, res) => {
-    let {email, password, dateofbirth, contact, firstname, lastname, } = req.body;
+    let {email, password, dateofbirth, contact, firstname, lastname, isAdmin } = req.body;
     try {
         password = await bcrypt.hash(password, 10);
         const response = await USER.create({
-            email, password, dateofbirth, contact, firstname, lastname, isAdmin: false
+            email, password, dateofbirth, contact, firstname, lastname, isAdmin
         });
         if (response) {
             return res.json({status: 'ok', msg:  'success'});

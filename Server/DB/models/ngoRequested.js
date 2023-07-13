@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const NgoDetails = new mongoose.Schema({
+const NgoRequested = new mongoose.Schema({
     contactNGOEmail: {
         type: String,
         required: true,
@@ -63,8 +63,8 @@ const NgoDetails = new mongoose.Schema({
         type: Boolean,
         required: true
     }
-}, { collection: 'NgoDetails' })
+}, { collection: 'NgoRequested' })
 
-const model = mongoose.model('NgoDetails', NgoDetails);
+const model = mongoose.model('NgoRequested', NgoRequested);
 
 module.exports = model;

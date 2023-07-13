@@ -550,6 +550,10 @@ body {
   font-size: 1.5rem;
   line-height: 3rem;
 }
+.ngo-option:hover, option:hover {
+  color: #fff;
+  background-color: #c2410c;
+}
 @media only screen and (max-width: 1000px) {
   .mission-card {
     margin-block: 1rem;

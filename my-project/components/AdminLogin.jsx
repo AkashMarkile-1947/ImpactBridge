@@ -1,15 +1,16 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import AuthTemp from './AuthTemp';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 /* import { LockClosedIcon } from '@heroicons/react/solid';
  */
-function LoginForm() {
+function AdminLoginForm() {
   return <AuthTemp component={AdminLogin} />
 }
-export default LoginForm;
+export default AdminLoginForm;
 
 const AdminLogin = () => {
+  const navigate =  useNavigate();
   const initialValues = { email: '', password: '' };
 
   const validationSchema = Yup.object({
@@ -35,6 +36,8 @@ const AdminLogin = () => {
 
     if(result.status === 'ok') {
       alert('success');
+      sessionStorage.setItem('login-data', JSON.stringify(result));
+      navigate("../admin-dashboard", {replace: true});
     } else {
       alert('error');
     }

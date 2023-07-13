@@ -3,27 +3,37 @@ import Nav from "./Navbar";
 import "./userdashboard.css";
 import { useNavigate } from "react-router-dom";
 
-const UserDashboard = () => {
+const NGODashboard = () => {
   const [userData, setUserData] = useState(null);
   const navigate = useNavigate();
-  const loginData = JSON.parse(sessionStorage.getItem("login-data"));
- 
+  const NGOData = JSON.parse(sessionStorage.getItem("ngo-login"));
+  if (NGOData == null) {
+    setTimeout(() => navigate("../", {replace: true}), 5000);
+    return (
+      <div className="page-not-found">
+        <h1>404</h1>
+        <h2>You Don't have access to this page</h2>
+      </div>
+    );
+  }
+  let name = NGOData.organizationName;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8080/api/userDashboard",
+          "http://localhost:8080/api/NGODashboard",
           {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ loginData }),
+            body: JSON.stringify({ NGOName: name }),
           }
         );
 
         const data = await response.json();
+        console.log(data)
 
         if (response.status === 200 && data.status === "ok") {
           setUserData(data.data);
@@ -40,21 +50,19 @@ const UserDashboard = () => {
     fetchData();
   }, []);
 
-  
-
   function processObjects(objects) {
     let mission = "";
     let ammount = 0;
     let transactions = 0;
     if (objects) {
-      transactions = objects.length;
+    transactions = objects.length;
     }
     if (objects) {
-      objects.forEach((obj) => {
-        mission = obj.Mission;
-        ammount += parseInt(obj.ammount);
-      });
-    }
+    objects.forEach((obj) => {
+      mission = obj.Mission;
+      ammount += parseInt(obj.ammount);
+    });
+  }
 
     const result = {
       mission: mission,
@@ -75,39 +83,31 @@ const UserDashboard = () => {
     return [];
   };
   let date = new Date().toISOString().split("T")[0].split("-");
-  date = `${date[2]}-${date[1]}-${date[0]}`;
+  date =`${date[2]}-${date[1]}-${date[0]}`;
 
   let MonthlyPayments = processObjects(periodPayments("Monthly Payment"));
   let OneTimePayments = processObjects(periodPayments("One Time Payment"));
   let TotalPayments = processObjects(userData);
 
-  //console.log(userData, TotalPayments);
+  console.log(userData, TotalPayments);
 
-  if (loginData == null) {
-    setTimeout(() => navigate("../", {replace: true}), 5000);
-    return (
-      <div className="page-not-found">
-        <h1>404</h1>
-        <h2>You Don't have access to this page</h2>
-      </div>
-    );
-  }
-  let name = `${loginData.firstname} ${loginData.lastname}`;
 
   return (
     <>
-      <div class="grid-container">
-        <div class="navbar">
-          <Nav color="wadw" toggle="aaw" />
+      <div className="grid-container">
+        <div className="navbar">
+          <Nav color="wadw"  toggle="aaw"/>
         </div>
-        <div class="sidebar">
+        <div className="sidebar">
           <Sidebar name={name} />
         </div>
-        <div class="main-content">
+        <div className="main-content">
           <div className="user-welcome">
             <div className="welcome-header">
               <h1 className="welcome-name">Welcome, {name}</h1>
-              <span className="welcome-date">{date}</span>
+              <span className="welcome-date">
+                {date}
+              </span>
             </div>
             <div className="welcome-header">
               <blockquote className="welcome-quote">
@@ -169,43 +169,23 @@ const Component = ({ userData }) => {
 
   return (
     <div className="user-container">
-      <h1
-        className="section-heading p-2"
-        style={{ fontSize: "32px", lineHeight: "48px" }}
-      >
-        Donation Summary
-      </h1>
+      <h1 className="section-heading p-2" style={{fontSize: "32px", lineHeight: "48px"}}>Donation Summary</h1>
       <div className="component">
         <div className="buttons-container">
           <h2 className="summary-h">Missions</h2>
-          <button
-            className="mission-button"
-            onClick={() => handleClick("div1")}
-          >
+          <button className="mission-button" onClick={() => handleClick("div1")}>
             No child Hungry
           </button>
-          <button
-            className="mission-button"
-            onClick={() => handleClick("div2")}
-          >
+          <button className="mission-button" onClick={() => handleClick("div2")}>
             Empower Young Minds
           </button>
-          <button
-            className="mission-button"
-            onClick={() => handleClick("div3")}
-          >
+          <button className="mission-button" onClick={() => handleClick("div3")}>
             Embrace Abilities, Inspire Change
           </button>
-          <button
-            className="mission-button"
-            onClick={() => handleClick("div4")}
-          >
+          <button className="mission-button" onClick={() => handleClick("div4")}>
             Caring for Our Seniors
           </button>
-          <button
-            className="mission-button"
-            onClick={() => handleClick("div5")}
-          >
+          <button className="mission-button" onClick={() => handleClick("div5")}>
             Hope and Healing Together
           </button>
         </div>
@@ -256,28 +236,25 @@ const MissionStat = ({ div, mission, activeDiv, userData }) => {
   }
   const missionArr = userData.filter((item) => item.Mission === mission);
   return (
-    <div
-      className={`transaction-container ${activeDiv === div ? "active" : ""}`}
-    >
+    <div className={`transaction-container ${activeDiv === div ? "active" : ""}`}>
       <h2 className="transaction-heading summary-h">Past Transactions</h2>
       {userData &&
         missionArr.map((item) => (
           <div className="transaction-item" key={item.timestamp}>
             <p className="transaction-stat">Mode: {item.modeOfTransaction}</p>
             <p className="transaction-stat">Amount: {item.ammount} &#8377;</p>
-            <p className="transaction-stat">
-              Date: {item.timestamp.split("T")[0]}
-            </p>
+            <p className="transaction-stat">Date: {item.timestamp.split("T")[0]}</p>
+            <p className="transaction-stat">NGO: {item.NGOName}</p>
           </div>
         ))}
     </div>
   );
 };
 
-const Sidebar = ({ name }) => {
+const Sidebar = ({name}) => {
   const navigate = useNavigate();
   const logout = () => {
-    const loginData = sessionStorage.setItem("login-data", null);
+    const loginData = sessionStorage.setItem("ngo-login", null);
     navigate("../", { replace: true });
   };
   return (
@@ -308,4 +285,4 @@ const Sidebar = ({ name }) => {
   );
 };
 
-export default UserDashboard;
+export default NGODashboard;

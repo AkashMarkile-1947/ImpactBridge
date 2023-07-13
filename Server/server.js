@@ -13,6 +13,8 @@ const NGOAcc2 = require('./Routes/NgoAcc2');
 const MMission = require("./Routes/MonthlyMissions");
 const UserDB =  require('./Routes/userDb');
 const MonthlyMission = require('./Routes/MonthlyMissions');
+const AdminDashboard = require("./Routes/AdminDashboard");
+const NGODashboard =  require("./Routes/NgoDashboard")
 const app  = express();
 require('dotenv').config();
 app.use(express());
@@ -29,6 +31,8 @@ app.use('/', TransactionR);
 app.use('/', NGOAcc2);
 app.use('/', UserDB);
 app.use("/", MonthlyMission);
+app.use('/', NGODashboard);
+app.use("/", AdminDashboard);
 //app.use('/', NGOAccReq);
 
 connection();
